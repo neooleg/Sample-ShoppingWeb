@@ -21,6 +21,21 @@ namespace Shopping.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SubmitOrder(AddItemViewModel model)
+        {
+            await MvcApplication.Bus.Publish<OrderSubmitted>(new
+            {
+                UserName = model.UserName ?? "Unknown",
+                Timestamp = DateTime.UtcNow,
+
+            });
+
+            return View("Index");
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Submit(AddItemViewModel model)
         {
             await MvcApplication.Bus.Publish<CartItemAdded>(new

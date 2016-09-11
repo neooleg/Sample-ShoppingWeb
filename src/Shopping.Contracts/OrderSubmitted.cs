@@ -9,7 +9,7 @@ namespace Shopping.Contracts
 
         DateTime Timestamp { get; }
 
-        Guid CartId { get; }
+        //Guid CartId { get; }
 
         string UserName { get; }
     }

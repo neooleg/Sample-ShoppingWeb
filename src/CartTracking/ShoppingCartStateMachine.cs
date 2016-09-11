@@ -15,7 +15,7 @@ namespace CartTracking
             Event(() => ItemAdded, x => x.CorrelateBy(cart => cart.UserName, context => context.Message.UserName)
                 .SelectId(context => Guid.NewGuid()));
 
-            Event(() => Submitted, x => x.CorrelateById(context => context.Message.CartId));
+            Event(() => Submitted, x => x.CorrelateBy(cart => cart.UserName, context => context.Message.UserName));
 
             Schedule(() => CartExpired, x => x.ExpirationId, x =>
             {
